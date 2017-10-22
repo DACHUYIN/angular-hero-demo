@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gradleSpringboot.mapper.HeroMapper">
+	<select id="getAllHero" resultType="com.gradleSpringboot.bean.Hero">
+		select * from hero
+	</select>
+	
+	<select id="getHero" resultType="com.gradleSpringboot.bean.Hero" parameterType="int">
+	    select * from hero where id=#{id}
+	</select>
+	
+	<delete id="deleteHero" parameterType="int">
+	    delete from hero where id=#{id}
+	</delete>
+	
+	<insert id="insertHero" parameterType="com.gradleSpringboot.bean.Hero">
+	   insert into hero(name) values(#{name})
+	</insert>
+	
+	<update id="updateHero" parameterType="com.gradleSpringboot.bean.Hero">
+	   update hero set name=#{name} where id=#{id} 
+	</update>
+	
+	<select id="searchHeroes" resultType="com.gradleSpringboot.bean.Hero" parameterType="String">
+	   select * from hero where name like '%${_parameter}%'
+	</select>
+</mapper>
